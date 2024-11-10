@@ -28,7 +28,7 @@ const Tab=createBottomTabNavigator();
 
 function App():JSX.Element{
   return (
-    <View><Text>Hello world</Text></View>
+    <View><Text>Hello world LL</Text></View>
   )
 
 }
