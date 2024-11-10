@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //screen
 import Home from './asset/screenList/Home';
 import About from './asset/screenList/About';
+import Register from './asset/authentication/Register';
+import Login from './asset/authentication/Login';
 
 
 //bottom navigation
@@ -15,8 +17,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 
+
 export type RootStackParamList={
-   Newtab:undefined
+   Newtab:undefined,
+   Register:undefined,
+   Login:undefined
 }
 // export type RootTabParamList={
 //   Home:undefined;
@@ -28,7 +33,12 @@ const Tab=createBottomTabNavigator();
 
 function App():JSX.Element{
   return (
-    <View><Text>Hello world LL</Text></View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Register'>
+        <Stack.Screen name='Register' component={Register} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 
 }
