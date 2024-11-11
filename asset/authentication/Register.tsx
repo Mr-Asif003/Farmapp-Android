@@ -3,17 +3,18 @@ import React from 'react';
 import { useState } from 'react';
 import { registerUser } from '../firebase services/auth';
 import { LinearGradient } from 'react-native-linear-gradient';
-
 //navigation
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Login from './Login';
-type RegisterProps=NativeStackScreenProps<RootStackParamList,'Register'>
+
+
+type RegisterProps = NativeStackScreenProps<RootStackParamList, 'Register'>
 
 
 
-const Register = ({navigation}:RegisterProps) => {
+const Register = ({ navigation }: RegisterProps) => {
   const [email, setEmail] = useState('');
   const [password, setpassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -28,14 +29,15 @@ const Register = ({navigation}:RegisterProps) => {
       setEmail('');
       setpassword('')
       setConfirmPassword('');
-    } catch (errord) {
-      Alert.alert('Error', 'error is occurred try again')
+    } catch (error) {
+      Alert.alert('Error registering user:', 'error has occured in registering')
     }
   }
 
   return (
 
     <View style={styles.Container} >
+
       <View style={styles.helloContainer}>
         <Text style={styles.helloText}>FarmApp
         </Text>
@@ -68,21 +70,37 @@ const Register = ({navigation}:RegisterProps) => {
 
       </View>
       <View>
-        <TouchableOpacity onPress={handleRegister} style={styles.Registerbtn}>
 
-          <Text style={styles.registertxt} >Register</Text>
-        </TouchableOpacity>
-
-      </View>
-      <View>
-        <TouchableOpacity  style={styles.loginbtn}>
-
-          <Text style={styles.registertxt} onPress={()=>navigation.navigate('Login')}>Login -></Text>
-        </TouchableOpacity>
+        <LinearGradient colors={['#00ff00', '#99ffcc']} style={styles.registerGradient}  >
+        <TouchableOpacity onPress={handleRegister}>
+          <Text style={styles.registertxt}>
+            Register
+          </Text>
+          </TouchableOpacity>
+        </LinearGradient>
 
       </View>
+
+      <View style={styles.signInBtnContainer}>
+        <Text style={styles.signIn}>Sign In</Text>
       
+        <LinearGradient colors={['#F97794', '#623AA2']} style={styles.signingGradient}  >
+        <TouchableOpacity onPress={()=>{
+          navigation.navigate("Login")
+        }}>
+          <Text style={styles.registertxt}>
+            Sign 
+          </Text>
+          </TouchableOpacity>
+        </LinearGradient>
+        
+      </View>
+
+
+
     </View>
+
+   
   )
 }
 
@@ -102,7 +120,7 @@ const styles = StyleSheet.create({
   },
   helloText: {
     marginTop: 30,
-    fontSize: 60,
+    fontSize: 40,
     color: 'black',
     fontWeight: '500'
   },
@@ -110,7 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'black',
     fontWeight: '500',
-    marginBottom: 30
+    marginBottom: 20
   },
 
   Textcolor: {
@@ -131,15 +149,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: 30,
     elevation: 15,
-    marginVertical: 10,
+    marginVertical: 8,
   },
 
-  Registerbtn: {
-    padding:7,
+  registerGradient: {
+    padding: 7,
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: 'orange',
-    height:'auto',
+    height: 'auto',
     borderRadius: 20,
     marginHorizontal: 95,
     elevation: 20,
@@ -148,12 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5
-  },
+ 
   buttonText: {
     fontSize: 18,
     fontFamily: 'Gill Sans',
@@ -163,28 +176,36 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
-  
-  loginbtn:{
-    padding:7,
-      display: 'flex',
-      flexDirection: 'row',
-      backgroundColor: 'orange',
-      height:'auto',
-      borderRadius: 20,
-     
-      elevation: 10,
-      marginVertical: 30,
-      marginLeft:260,
-      alignItems: 'center',
-      justifyContent: 'center',
-  
-  
+
+
+  registertxt: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: 'black'
   },
-  registertxt:{
-    fontSize:20,
-    fontWeight:'700',
-    color:'white'
-  }
+
+  signInBtnContainer:{
+    flexDirection:'row',
+    marginTop:30,
+    width:'90%',
+    fontSize:15,
+    alignItems:'center',
+    justifyContent:'flex-end'
+  },
+
+  signingGradient:{
+    height:34,
+    width:56,
+    borderRadius:17,
+    alignItems:'center',
+    justifyContent:'center',
+    marginHorizontal:10
+  },
+signIn:{
+  fontSize:25,
+  fontWeight:'900',
+  color:'black'
+}
 
 
 
